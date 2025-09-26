@@ -26,5 +26,7 @@ const reactElement = createElement(
 
 createRoot(document.getElementById('root')).render(
     // reactElement
+    // anotherElement
+    // MyApp() //not recommended
     <App />
 )
