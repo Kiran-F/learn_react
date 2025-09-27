@@ -4,15 +4,24 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-
-  let [counter, setCounter] = useState(15); //we used useState to avoid the lines of code for selecting the elements from DOM and updating them one by one.
+  // a hook ahead
+  let [counter, setCounter] = useState(10); //we used useState to avoid the lines of code for selecting the elements from DOM and updating them one by one.
+  //the value will be 10 initially but will stay between 0 to 20
   const addValue = () => {
     // counter++;
-    setCounter(++counter);
+    if(counter > 19){
+      setCounter(counter);
+    }else{
+      setCounter(++counter);
+    }
   }
   const removeValue = () => {
     // counter--;
-    setCounter(--counter);
+    if(counter < 1){
+      setCounter(counter);
+    }else{
+      setCounter(--counter);
+    }
   }
   return (
     <>
