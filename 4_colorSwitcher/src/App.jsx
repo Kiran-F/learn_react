@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import './App.css'
-import "tailwindcss"
+// import "tailwindcss"
 
 function App() {
   const [color, setColor] = useState("#222222")
