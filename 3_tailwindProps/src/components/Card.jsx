@@ -1,12 +1,12 @@
 import React from 'react'
 
-function Card({username, labelText, btnText="Visit me"}) {   //visit me is written as a default value incase prop is not passed in App.jsx
+function Card({username, labelText, imgSrc, btnText="Visit me"}) {   //visit me is written as a default value incase prop is not passed in App.jsx
 
     return(
     <div className="md:max-w-sm w-full p-6 rounded-xl shadow-xl bg-black border border-zinc-800 hover:border-white transition-all duration-300">
       <div className="relative overflow-hidden rounded-lg mb-6">
         <img
-          src="https://images.unsplash.com/photo-1511385348-a52b4a160dc2?q=80&w=907&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src={imgSrc}
           alt="Featured content"
           width={300}
           height={200}

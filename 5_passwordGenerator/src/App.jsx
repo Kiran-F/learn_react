@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-// import "tailwindcss";
+import './App.css'
 
 function App() {
   //useState hook
@@ -66,7 +66,7 @@ function App() {
             className='cursor-pointer'
             onChange={(e) => {setLength(e.target.value)}}
             />
-            <label className='text-orange-400'>Length:({length})</label>
+            <label className='text-orange-400'>Length: ({length})</label>
           </div>
 
           <div className='flex items-center gap-x-1 text-orange-400'>
