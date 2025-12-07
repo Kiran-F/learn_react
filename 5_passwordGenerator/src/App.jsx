@@ -8,7 +8,7 @@ function App() {
   const [charAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState("");
 
-  const passwordGenerator = useCallback(() => { //useCallback hook
+  const passwordGenerator = useCallback(() => {//useCallback hook for optimization, so that it is stored in cache for frequent use
     let pass = '';
     let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopkrstuvwxyz';
 
@@ -23,7 +23,7 @@ function App() {
 
   }, [length, numberAllowed, charAllowed, setPassword])
 
-  useEffect(() => { //useEffect hook
+  useEffect(() => { //useEffect hook (on change on the dependencies, passwordGenerator is called.)
     passwordGenerator();
   }, [length, numberAllowed, charAllowed, passwordGenerator])
 
@@ -50,7 +50,7 @@ function App() {
           readOnly
           ref={passwordRef}
           />
-          <button onClick={copyToClipboard} className='outline-none bg-teal-600 hover:bg-teal-700 text-white px-3 py-0.5 shrink-0 cursor-pointer'>
+          <button onClick={copyToClipboard} className='active:bg-black active:text-white outline-none bg-teal-600 hover:bg-teal-700 text-white px-3 py-0.5 shrink-0 cursor-pointer '>
             Copy
           </button>
         </div>
