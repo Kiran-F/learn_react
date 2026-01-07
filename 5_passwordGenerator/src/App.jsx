@@ -23,7 +23,7 @@ function App() {
 
   }, [length, numberAllowed, charAllowed, setPassword])
 
-  useEffect(() => { //useEffect hook (on change on the dependencies, passwordGenerator is called.)
+  useEffect(() => { //useEffect hook (on change in the dependencies, passwordGenerator is called.)
     passwordGenerator();
   }, [length, numberAllowed, charAllowed, passwordGenerator])
 
