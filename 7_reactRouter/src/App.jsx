@@ -1,10 +1,8 @@
-// import { useState } from 'react'
 import './App.css'
 import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route } from "react-router-dom";
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {Home, About, Contact, User, Github} from './components'
 import Layout from './Layout.jsx'
-import {githubInfoLoader} from './components/Github/Github.jsx'
+import { githubInfoLoader } from './components/Github/githubInfoLoader.js';
 
 
 const router = createBrowserRouter(
@@ -23,6 +21,7 @@ const router = createBrowserRouter(
     </Route>
   )
 );
+
 
 function App() {
   return (
