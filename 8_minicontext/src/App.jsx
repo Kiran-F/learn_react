@@ -1,10 +1,17 @@
 import './App.css'
+import Login from './components/Login'
+import Profile from './components/Profile'
+import UserContextProvider from './context/UserContextProvider'
 
 function App() {
 
   return (
     <>
-      <h2>Here's context API.</h2>
+      <UserContextProvider>
+        <h2>Here's context API.</h2>
+        <Login />
+        <Profile />
+      </UserContextProvider>
     </>
   )
 }
