@@ -8,7 +8,7 @@ function TodoItem({ todo }) {
     const {deleteTodo, updateTodo, toggleComplete} = useTodo();
 
     const editTodo = () => {
-        updateTodo(todo.id, {...todo, todo: todoMsg});
+        updateTodo(todo.id, {...todo, todo:todoMsg});
         setIsTodoEditable(false);
     }
 
@@ -30,9 +30,9 @@ function TodoItem({ todo }) {
             />
             <input
                 type="text"
-                className={`border outline-none w-full bg-transparent rounded-lg ${
-                    isTodoEditable ? "border-black/10 px-2" : "border-transparent"
-                } ${todo.completed ? "line-through" : ""}`}
+                className={`border outline-none w-full bg-transparent rounded-lg 
+                    ${isTodoEditable ? "border-black/10 px-2" : "border-transparent"} 
+                    ${todo.completed ? "line-through" : ""}`}
                 value={todoMsg}
                 onChange={(e) => setTodoMsg(e.target.value)}
                 readOnly={!isTodoEditable}
