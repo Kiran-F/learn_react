@@ -4,6 +4,8 @@ import { removeTodo, updateTodo } from '../features/todo/todoSlice'
 import { useState } from 'react';
 
 function Todos() {
+  // useSelector is for getting the current values in state
+  // useDispatch is to send values to the state
 
     const todos = useSelector(state => state.todos);
     const dispatch = useDispatch();
