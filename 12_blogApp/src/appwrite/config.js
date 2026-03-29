@@ -1,5 +1,7 @@
 import conf from '../conf/conf';
 import { Client, ID, Databases, Storage, Query} from "appwrite";
+// Post related services: createPost, updatePost, deletePost, getPost, getPosts, uploadFile, deleteFile,
+// getFilePreview.
 
 export class Service{
     client = new Client();

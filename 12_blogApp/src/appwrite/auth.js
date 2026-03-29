@@ -1,5 +1,6 @@
 import conf from "../conf/conf";
 import {Client, Account, ID} from "appwrite";
+// for auth services: createAccount (signin), login, getCurrentUser, logout.
 
 export class AuthService {
     client = new Client();
@@ -11,6 +12,7 @@ export class AuthService {
             .setProject(conf.appwriteProjectId);
         this.account = new Account(this.client);
     }
+    
     
     async createAccount({email, password, name}){
         try{
@@ -27,6 +29,7 @@ export class AuthService {
         }
     }
 
+
     async login({email, password}) {
         try {
             return await this.account.createSession(email, password);
@@ -34,6 +37,7 @@ export class AuthService {
             console.log("Appwrite service :: login :: error", error);
         }
     }
+
 
     async getCurrentUser() {
         try {
@@ -43,7 +47,6 @@ export class AuthService {
         }
         return null;
     }
-
 
 
     async logout(){
