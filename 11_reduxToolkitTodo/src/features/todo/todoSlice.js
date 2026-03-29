@@ -5,7 +5,7 @@ const initialState = {
         {
             id:1, 
             text: "Hello world"
-        }
+        },
     ]
 }
 
