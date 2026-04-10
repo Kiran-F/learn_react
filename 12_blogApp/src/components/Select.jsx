@@ -1,7 +1,7 @@
 import React, {useId} from 'react'
 
 function Select({
-    options,
+    options, //options is an array by default so have to apply an optional loop
     label,
     className='',
     ...props
