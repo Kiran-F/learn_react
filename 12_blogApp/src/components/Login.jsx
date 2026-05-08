@@ -9,8 +9,8 @@ import {useForm} from 'react-hook-form'
 
 function Login() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const {register, handleSubmit} = useForm();
+  const dispatch = useDispatch(); //dispatch send an action object to the Redux store
+  const {register, handleSubmit} = useForm();  //handleSubmit is an event
   const [error, setError] = useState("");
 
   const login = async(data) => {
@@ -19,7 +19,7 @@ function Login() {
       const session = await authService.login(data);
       if (session) {
         const userData = await authService.getCurrentUser()
-        if(userData) dispatch(authLogin(userData));
+        if(userData) dispatch(authLogin(userData));  // this is authLogin from redux
         navigate("/");
       }
     } catch (error) {
@@ -68,10 +68,11 @@ function Login() {
                 label="Password: "
                 type="password"
                 placeholder="Enter your password"
-                {...register("password", {
+                {...register("password", { //have to spread so that value is not override and this is used to pass data
                   required: true
                 })}
                 />
+
                 <Button
                 type="submit"
                 className="w-full"
