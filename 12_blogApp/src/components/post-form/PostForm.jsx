@@ -19,7 +19,7 @@ function PostForm({post}) {
     })
 
     const navigate = useNavigate();
-    const userData = useSelector(state => state.user.userData); //to get the current state
+    const userData = useSelector(state => state.auth.userData); //to get the current state
 
     const submit = async (data) => {
         if(post){
@@ -49,7 +49,8 @@ function PostForm({post}) {
                     userId:userData.$id,
                 })
                 if(dbPost){
-                    navigate(`Post/${dbPost.$id}`)
+                //  navigate(`Post/${dbPost.$id}`)
+                    navigate(`/post/${dbPost.$id}`)
                 }
             }
         }
@@ -82,7 +83,7 @@ function PostForm({post}) {
     }, [watch, slugTransform, setValue])
 
 
-    
+
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
             <div className="w-2/3 px-2">
@@ -114,7 +115,7 @@ function PostForm({post}) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={appwriteService.getFileView(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />

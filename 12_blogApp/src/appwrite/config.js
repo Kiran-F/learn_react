@@ -127,6 +127,15 @@ export class Service{
         )
     }
 
+    getFileView(fileId){
+    if (!fileId) return null;
+
+    return this.bucket.getFileView(
+        conf.appwriteBucketId,
+        fileId
+    )
+}
+
 }
 
 const service = new Service();
