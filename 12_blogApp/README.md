@@ -24,45 +24,6 @@ Blogy is a modern, fully-functional blog web application built with React, Redux
 - **Rich Text Editor:** [TinyMCE](https://www.tiny.cloud/)
 - **HTML Parsing:** `html-react-parser`
 
-## 🚀 Getting Started
-
-Follow these instructions to set up the project locally on your machine.
-
-### Prerequisites
-
-Make sure you have Node.js installed on your machine. You will also need an [Appwrite](https://appwrite.io/) account and a configured Appwrite project (with a Database, Collection, and Storage Bucket).
-
-### Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/blogy.git
-   cd blogy
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Environment Variables:**
-   Create a `.env` file in the root of the project and add your Appwrite configuration details:
-   ```env
-   VITE_APPWRITE_URL="https://cloud.appwrite.io/v1"
-   VITE_APPWRITE_PROJECT_ID="your-project-id"
-   VITE_APPWRITE_DATABASE_ID="your-database-id"
-   VITE_APPWRITE_COLLECTION_ID="your-collection-id"
-   VITE_APPWRITE_BUCKET_ID="your-bucket-id"
-   ```
-
-4. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
-
-5. **Open the app:**
-   Visit `http://localhost:5173` in your browser.
-
 ## 🎨 Design System
 
 Blogy embraces the **Neo-Brutalism** design trend. This includes:
