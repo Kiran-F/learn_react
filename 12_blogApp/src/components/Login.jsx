@@ -19,7 +19,7 @@ function Login() {
       const session = await authService.login(data);
       if (session) {
         const userData = await authService.getCurrentUser()
-        if(userData) dispatch(authLogin(userData));  // this is authLogin from redux
+        if(userData) dispatch(authLogin({userData}));  // this is authLogin from redux
         navigate("/");
       }
     } catch (error) {
@@ -29,20 +29,20 @@ function Login() {
 
   return (
     <div
-    className='flex items-center justify-center w-full'
+    className='flex items-center justify-center w-full py-12'
     >
-        <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
+        <div className={`mx-auto w-full max-w-lg bg-white p-10 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]`}>
         <div className="mb-2 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">
                         <Logo width="100%" />
                     </span>
         </div>
-        <h2 className="text-center text-2xl font-bold leading-tight">Sign in to your account</h2>
-        <p className="mt-2 text-center text-base text-black/60">
+        <h2 className="text-center text-4xl font-black uppercase text-black leading-tight">Sign in to your account</h2>
+        <p className="mt-2 text-center text-lg font-bold text-black/60">
                     Don&apos;t have any account?&nbsp;
                     <Link
                         to="/signup"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
+                        className="font-black text-black transition-all duration-200 hover:bg-[#FFE800] px-1"
                     >
                         Sign Up
                     </Link>

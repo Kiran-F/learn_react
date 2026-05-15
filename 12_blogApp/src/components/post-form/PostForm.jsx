@@ -1,20 +1,20 @@
-import React, {useCallback} from 'react'
-import {useForm} from 'react-hook-form'
-import {Button, Input, Select, RTE} from '../index'
+import React, { useCallback } from 'react'
+import { useForm } from 'react-hook-form'
+import { Button, Input, Select, RTE } from '../index'
 import appwriteService from '../../appwrite/config'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-function PostForm({post}) {
+function PostForm({ post }) {
     //watch: continuously monitor a field
     //setValue & getValues: to set & get values in a field
 
-    const {register, handleSubmit, watch, setValue, control, getValues} = useForm({
-        defaultValues:{
-            title:post?.title || '',
-            slug:post?.slug || '',
-            content:post?.content || '',
-            status:post?.status || 'active',
+    const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
+        defaultValues: {
+            title: post?.title || '',
+            slug: post?.slug || '',
+            content: post?.content || '',
+            status: post?.status || 'active',
         },
     })
 
@@ -22,34 +22,34 @@ function PostForm({post}) {
     const userData = useSelector(state => state.auth.userData); //to get the current state
 
     const submit = async (data) => {
-        if(post){
-            const file=data.image[0] ? appwriteService.uploadFile(data.image[0]) : null
+        if (post) {
+            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null
 
             if (file) {
-                appwriteService.deleteFile(post.featuredImage[0])
+                // appwriteService.deleteFile(post.featuredImage[0])
+                await appwriteService.deleteFile(post.featuredImage)
             }
-
+            console.log("Submit button clicked!");
             const dbPost = await appwriteService.updatePost(post.$id, {
                 ...data,
                 featuredImage: file ? file.$id : undefined,
             })
 
-            if(dbPost){
-                    navigate(`/post/${dbPost.$id}`)
+            if (dbPost) {
+                navigate(`/post/${dbPost.$id}`)
             }
 
         } else { //if there is nothing to be updated, means user wants to create a new post
             const file = await appwriteService.uploadFile(data.image[0]);
-
-            if(file){
+            if (file) {
                 const fileId = file.$id
-                data.featuredImage=fileId
+                data.featuredImage = fileId
                 const dbPost = await appwriteService.createPost({
                     ...data,
-                    userId:userData.$id,
+                    userId: userData.$id,
                 })
-                if(dbPost){
-                //  navigate(`Post/${dbPost.$id}`)
+                if (dbPost) {
+                    //  navigate(`Post/${dbPost.$id}`)
                     navigate(`/post/${dbPost.$id}`)
                 }
             }
@@ -58,22 +58,22 @@ function PostForm({post}) {
 
     //slugTransform: watching the title and generating value in slug, when space detected replace it with dash
     const slugTransform = useCallback((value) => {
-        if(value && typeof value === 'string')
+        if (value && typeof value === 'string')
 
             return value
-            .trim()
-            .toLowerCase()
-            .replace(/[^a-zA-Z\d\s]+/g, "-")
-            .replace(/\s/g, "-");
-        
+                .trim()
+                .toLowerCase()
+                .replace(/[^a-zA-Z\d\s]+/g, "-")
+                .replace(/\s/g, "-");
+
         return ''
 
     }, [])
 
     React.useEffect(() => {
-        const subscription = watch((value, {name}) => {
-            if(name === 'title'){
-                setValue('slug', slugTransform(value.title,{shouldValidate:true}))
+        const subscription = watch((value, { name }) => {
+            if (name === 'title') {
+                setValue('slug', slugTransform(value.title, { shouldValidate: true }))
             }
         })
 
@@ -82,10 +82,14 @@ function PostForm({post}) {
         }
     }, [watch, slugTransform, setValue])
 
-
-
-  return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+    return (
+        <form onSubmit={handleSubmit(submit, (errors) => {
+            if (errors.slug?.type === "maxLength") {
+                alert("You can't enter characters greater than 36 in the slug.");
+            } else if (Object.keys(errors).length > 0) {
+                alert("Please fill all required fields correctly.");
+            }
+        })} className="flex flex-wrap">
             <div className="w-2/3 px-2">
                 <Input
                     label="Title :"
@@ -97,7 +101,7 @@ function PostForm({post}) {
                     label="Slug :"
                     placeholder="Slug"
                     className="mb-4"
-                    {...register("slug", { required: true })}
+                    {...register("slug", { required: true, maxLength: 36 })}
                     onInput={(e) => {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
@@ -132,7 +136,7 @@ function PostForm({post}) {
                 </Button>
             </div>
         </form>
-  )
+    )
 }
 
 export default PostForm
