@@ -79,6 +79,12 @@ function Login() {
                 >Sign in</Button>
             </div>
         </form>
+
+        <div className='mt-6 p-4 bg-[#FFF9D2] border-2 border-black text-left text-sm'>
+            <p className='font-bold text-black'>If you want to use a demo account login with:</p>
+            <p className='text-gray-800 mt-1'><span className='font-semibold'>Email:</span> abc@gmail.com</p>
+            <p className='text-gray-800'><span className='font-semibold'>password:</span> 12345678</p>
+        </div>
         </div>
     </div>
   )
