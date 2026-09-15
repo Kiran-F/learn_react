@@ -1,5 +1,7 @@
 # Blogy 🚀
 
+> 🌐 **Live Demo:** [https://blogy-kohl.vercel.app/](https://blogy-kohl.vercel.app/)
+
 Blogy is a modern, fully-functional fullstack blog web application built with **React 19**, **Vite**, **Redux Toolkit**, and **Appwrite**. It features a bold **Neo-Brutalism UI** design, a completely **self-made Native Rich Text Editor** (zero external API keys), secure authentication, and seamless cloud media storage.
 
 ---
